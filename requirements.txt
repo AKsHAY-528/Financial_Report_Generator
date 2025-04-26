@@ -4,3 +4,4 @@ pip install tiktoken
 pip install faiss-cpu langchain transformers
 pip install faiss-cpu langchain transformers reportlab
 pip install sentence-transformers
+pip install flask
