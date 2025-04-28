@@ -1,15 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Upload Financial Data</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upload Financial Report</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Background Animation */
+    body {
+      background: linear-gradient(270deg, #00c6ff, #0072ff, #00c6ff);
+      background-size: 600% 600%;
+      animation: gradientAnimation 12s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glass Effect */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Hover scaling */
+    .glass-card:hover {
+      transform: scale(1.03);
+    }
+
+    /* Floating circles */
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
 </head>
-<body>
-    <h1>Upload Your Financial Text File</h1>
-    <form action="/generate" method="POST" enctype="multipart/form-data">
-        <input type="file" name="financial_file" accept=".txt" required>
-        <br><br>
-        <button type="submit">Generate Report</button>
+
+<body class="min-h-screen flex items-center justify-center px-6 py-12 relative overflow-hidden">
+
+  <!-- Floating Background Shapes -->
+  <div class="absolute top-10 left-10 w-24 h-24 bg-pink-300 rounded-full opacity-30 floating"></div>
+  <div class="absolute bottom-20 right-20 w-32 h-32 bg-blue-300 rounded-full opacity-30 floating delay-200"></div>
+
+  <!-- Main Upload Card -->
+  <div class="glass-card p-10 max-w-md w-full z-10">
+    <h1 class="text-4xl font-extrabold text-center text-white mb-8 drop-shadow-lg animate-pulse">📈 Upload Financial File</h1>
+
+    <form method="POST" enctype="multipart/form-data" class="flex flex-col space-y-6">
+      <input 
+        type="file" 
+        name="financial_file" 
+        required 
+        class="w-full text-gray-700 rounded-lg border-2 border-dashed border-gray-300 p-4 bg-white/70 focus:outline-none focus:ring-2 focus:ring-blue-400 hover:bg-white"
+      >
+
+      <div class="flex justify-between space-x-4">
+        <button 
+          type="submit" 
+          formaction="/generate"
+          class="flex-1 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold py-3 rounded-lg hover:from-green-500 hover:to-blue-600 transform hover:scale-105 transition duration-300 shadow-md"
+        >
+          📄 Generate Report
+        </button>
+
+        <button 
+          type="submit" 
+          formaction="/summarize"
+          class="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 rounded-lg hover:from-purple-600 hover:to-pink-600 transform hover:scale-105 transition duration-300 shadow-md"
+        >
+          ✨ Summarize
+        </button>
+      </div>
     </form>
+  </div>
+
 </body>
 </html>
